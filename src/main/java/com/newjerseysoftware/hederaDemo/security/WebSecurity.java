@@ -26,6 +26,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.cors()
                 .and()
                 .csrf()
@@ -39,8 +40,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .addFilter( this.getJWTAuthenticationFilter())
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 .sessionManagement()
-                .sessionCreationPolicy(
-                        SessionCreationPolicy.STATELESS); // this disables session creation on Spring Security
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // this disables session creation on Spring Security
     }
 
     public JWTAuthenticationFilter getJWTAuthenticationFilter() throws Exception {

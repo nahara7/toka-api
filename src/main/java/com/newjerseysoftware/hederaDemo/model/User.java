@@ -1,11 +1,13 @@
 package com.newjerseysoftware.hederaDemo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
     public User() {
