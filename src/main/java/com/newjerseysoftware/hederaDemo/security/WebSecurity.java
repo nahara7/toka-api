@@ -36,24 +36,18 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .addFilter( this.getJWTAuthenticationFilter())
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 .sessionManagement()
                 .sessionCreationPolicy(
                         SessionCreationPolicy.STATELESS); // this disables session creation on Spring Security
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.cors().and().csrf().disable().authorizeRequests()
-//                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-//                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
-//                // this disables session creation on Spring Security
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//    }
+    public JWTAuthenticationFilter getJWTAuthenticationFilter() throws Exception {
+        final JWTAuthenticationFilter filter = new JWTAuthenticationFilter(authenticationManager());
+        filter.setFilterProcessesUrl("/api/v1.0/login");
+        return filter;
+    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
