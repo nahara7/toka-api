@@ -3,16 +3,17 @@ package com.newjerseysoftware.hederaDemo.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.hedera.hashgraph.sdk.PrivateKey;
 import com.hedera.hashgraph.sdk.PublicKey;
+import com.mysql.cj.xdevapi.Table;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "vendors")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class Vendor {
 
-    public User() {
+    public Vendor() {
     }
 
     @Id
@@ -42,6 +43,7 @@ public class User {
 
     @Column(name="privatekey")
     private String privatekey;
+
 
 
     public String getAccountid() {
@@ -110,7 +112,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Vendor{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
@@ -131,3 +133,4 @@ public class User {
         return this.publickey;
     }
 }
+
