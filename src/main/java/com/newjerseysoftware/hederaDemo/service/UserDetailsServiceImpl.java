@@ -3,6 +3,7 @@ package com.newjerseysoftware.hederaDemo.service;
 import com.newjerseysoftware.hederaDemo.model.User;
 import com.newjerseysoftware.hederaDemo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,8 +15,8 @@ import java.util.ArrayList;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserRepository userRepository;
-
-    public UserDetailsServiceImpl(UserRepository userRepository) {
+     @Autowired
+     public UserDetailsServiceImpl(@Qualifier("user")UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

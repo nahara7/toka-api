@@ -3,7 +3,7 @@ package com.newjerseysoftware.hederaDemo.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.hedera.hashgraph.sdk.PrivateKey;
 import com.hedera.hashgraph.sdk.PublicKey;
-import com.mysql.cj.xdevapi.Table;
+//import com.mysql.cj.xdevapi.Table;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;

@@ -27,7 +27,7 @@ public class UserController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/users")
-    public List<User> getAllUsers() {
+    public Object getAllUsers() {
         return userRepository.findAll();
     }
 
