@@ -2,6 +2,9 @@ import com.hedera.hashgraph.sdk.*;
 import com.hedera.hashgraph.sdk.Client;
 import com.hedera.hashgraph.sdk.AccountId;
 import com.hedera.hashgraph.sdk.PrivateKey;
+import com.hedera.hashgraph.sdk.proto.Response;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 //import com.hedera.hashgraph.sdk.*;
 //import com.hedera.hashgraph.sdk.MirrorClient;
 //import com.hedera.hashgraph.sdk.*;
@@ -30,7 +33,7 @@ public class JiuValleyToken {
         PrivateKey adminKey = PrivateKey.generate();
 
         //Create the transaction
-        TokenCreateTransaction transaction = new TokenCreateTransaction()
+       /* TokenCreateTransaction transaction = new TokenCreateTransaction()
                 .setName("Jiu Valley Token")
                 .setSymbol("JVT")
                 .setInitialSupply(50000000)
@@ -43,18 +46,20 @@ public class JiuValleyToken {
         //Build the unsigned transaction, sign with admin private key of the token,
         // sign with the token treasury private key, submit the transaction to a Hedera network
         TransactionResponse txResponse = transaction.freezeWith(client).sign(adminKey).sign(myPrivateKey).execute(client);
-      // TransactionResponse txResponse=
-        //transaction.freezeWith(client)
-        //transaction.sign(adminKey)
-        //transaction.sign(myPrivateKey);
-        //TransactionResponse txResponse= transaction.execute(client);
-
+        OkHttpClient client2 = new OkHttpClient().newBuilder()
+                .build();
+        Request request = new Request.Builder()
+                .url("https://api.dragonglass.me/hedera/api/transactions/{transactionID}")
+                .method("GET", null)
+                .addHeader("ad418e056319da3959b8dd68116bf526d8819680", "e224b0e9-b721-3ccb-b24b-8c2659e3fb33")
+                .build();
+        Response response = client2.newCall(request).execute();
         //Request the receipt of the transaction
         TransactionReceipt receipt = txResponse.getReceipt(client);
         System.out.println(receipt);
         //Get the token ID from the receipt
        //account Id??
-        AccountId tokenId = receipt.accountId;
+      /*  AccountId tokenId = receipt.accountId;
         System.out.println("The new token ID is " + tokenId);
         System.out.println("Name:"+  transaction.getName());
         System.out.println("Symbol" + transaction.getSymbol());
@@ -67,6 +72,6 @@ public class JiuValleyToken {
         System.out.println(transaction.getTreasury().realm);
 
         //transaction.getTokenSymbol(),
-        //transaction.getDecimals());//transaction.getInitialSupply());
+        //transaction.getDecimals());//transaction.getInitialSupply());*/
     }
 }
