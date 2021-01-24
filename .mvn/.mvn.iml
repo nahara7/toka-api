@@ -3,7 +3,13 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+<<<<<<< Updated upstream:.mvn/.mvn.iml
       <sourceFolder url="file://$MODULE_DIR$/wrapper" isTestSource="false" />
+=======
+      <sourceFolder url="file://$MODULE_DIR$/toka-api-master/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/toka-api-master/src/test" isTestSource="true" />
+>>>>>>> Stashed changes:.idea/toka-api.iml
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

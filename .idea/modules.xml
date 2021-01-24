@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< Updated upstream
       <module fileurl="file://$PROJECT_DIR$/.mvn/.mvn.iml" filepath="$PROJECT_DIR$/.mvn/.mvn.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo.iml" filepath="$PROJECT_DIR$/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/test/test.iml" filepath="$PROJECT_DIR$/src/test/test.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/toka-api-master/demo.iml" filepath="$PROJECT_DIR$/toka-api-master/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/toka-api.iml" filepath="$PROJECT_DIR$/.idea/toka-api.iml" />
+>>>>>>> Stashed changes
     </modules>
   </component>
 </project>

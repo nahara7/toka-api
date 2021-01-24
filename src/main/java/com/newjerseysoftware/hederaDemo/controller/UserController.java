@@ -55,7 +55,9 @@ public class UserController {
         user.setFirstname(userDetails.getFirstname());
         user.setLastname(userDetails.getLastname());
         user.setAccountid(userDetails.getAccountid());
-        user.setPublickey(userDetails.getPublickey());
+        //user.setPublickey(userDetails.getPublickey());
+        user.setPrivateKey();
+        user.setPublickey();
 
         final User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);

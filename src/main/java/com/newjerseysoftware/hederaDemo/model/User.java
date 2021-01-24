@@ -1,16 +1,23 @@
 package com.newjerseysoftware.hederaDemo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+<<<<<<< Updated upstream:src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
 import com.hedera.hashgraph.sdk.PrivateKey;
 import com.hedera.hashgraph.sdk.PublicKey;
+=======
+import com.hedera.hashgraph.sdk.*;
+>>>>>>> Stashed changes:toka-api-master/src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import java.util.Objects;
+import java.util.concurrent.TimeoutException;
 
 @Entity
 @Table(name = "users")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
+    Client client=Client.forTestnet();
 
     public User() {
     }
@@ -42,6 +49,10 @@ public class User {
 
     @Column(name="privatekey")
     private String privatekey;
+<<<<<<< Updated upstream:src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
+=======
+
+>>>>>>> Stashed changes:toka-api-master/src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
 
 
     public String getAccountid() {
@@ -52,13 +63,23 @@ public class User {
         this.accountid = accountid;
     }
 
+    public void setAccountid() throws HederaReceiptStatusException, TimeoutException, HederaPreCheckStatusException {
+        this.accountid=AccountCreateTransaction(this.publickey).toString();
+    }
+
+
     public String getPublickey() {
         return publickey;
     }
 
-    public void setPublickey(String publickey) {
-        this.publickey = publickey;
+    public void setPublickey(){
+        this.publickey=PrivateKey.fromString(this.privatekey).getPublicKey().toString();
     }
+    public void setPrivateKey(){
+        this.privatekey= PrivateKey.generate().toString();
+    }
+    public String getPrivateKey(){ return this.privatekey;}
+    public String getPublicKey(){return this.publickey;}
 
     public String getFirstname() {
         return firstname;
@@ -108,6 +129,9 @@ public class User {
         this.id = id;
     }
 
+
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -116,6 +140,7 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+<<<<<<< Updated upstream:src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
     public void setPrivatekey(){
         PrivateKey newPrivKey = PrivateKey.generate();
         this.privatekey=newPrivKey.toString();
@@ -129,5 +154,21 @@ public class User {
     }
     public String getPublicKey(){
         return this.publickey;
+=======
+    public AccountId AccountCreateTransaction(String publickey) throws TimeoutException, HederaPreCheckStatusException, HederaReceiptStatusException {
+
+        //my env variables
+        AccountId envId=AccountId.
+                fromString(Objects.requireNonNull((System.getenv("nahara_account_id"))));
+        PrivateKey envPriv=PrivateKey.
+                fromString(Objects.requireNonNull((System.getenv("nahara_private_key"))));
+        client.setOperator(envId, envPriv);
+        AccountCreateTransaction transaction = new AccountCreateTransaction()
+                .setKey(PublicKey.fromString(publickey))
+                .setInitialBalance( new Hbar(300));
+        TransactionResponse txId= transaction.execute(client);
+        TransactionReceipt receipt= txId.getReceipt(client);
+        return receipt.accountId;
+>>>>>>> Stashed changes:toka-api-master/src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
     }
 }
