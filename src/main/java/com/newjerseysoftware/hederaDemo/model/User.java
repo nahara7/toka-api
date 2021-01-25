@@ -1,12 +1,8 @@
+
 package com.newjerseysoftware.hederaDemo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-<<<<<<< Updated upstream:src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
-import com.hedera.hashgraph.sdk.PrivateKey;
-import com.hedera.hashgraph.sdk.PublicKey;
-=======
 import com.hedera.hashgraph.sdk.*;
->>>>>>> Stashed changes:toka-api-master/src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -49,10 +45,7 @@ public class User {
 
     @Column(name="privatekey")
     private String privatekey;
-<<<<<<< Updated upstream:src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
-=======
 
->>>>>>> Stashed changes:toka-api-master/src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
 
 
     public String getAccountid() {
@@ -140,21 +133,6 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
-<<<<<<< Updated upstream:src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
-    public void setPrivatekey(){
-        PrivateKey newPrivKey = PrivateKey.generate();
-        this.privatekey=newPrivKey.toString();
-    }
-    private String getPrivatekey(){
-        return this.privatekey;
-    }
-    public void setPublicKey(){
-        PublicKey newPublicKey=PrivateKey.fromString(this.privatekey).getPublicKey();
-        this.publickey=newPublicKey.toString();
-    }
-    public String getPublicKey(){
-        return this.publickey;
-=======
     public AccountId AccountCreateTransaction(String publickey) throws TimeoutException, HederaPreCheckStatusException, HederaReceiptStatusException {
 
         //my env variables
@@ -169,6 +147,5 @@ public class User {
         TransactionResponse txId= transaction.execute(client);
         TransactionReceipt receipt= txId.getReceipt(client);
         return receipt.accountId;
->>>>>>> Stashed changes:toka-api-master/src/main/java/com/newjerseysoftware/hederaDemo/model/User.java
     }
 }

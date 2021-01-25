@@ -5,6 +5,7 @@ import com.hedera.hashgraph.sdk.*;
 import java.sql.Time;
 import java.util.concurrent.TimeoutException;
 
+import com.hedera.hashgraph.sdk.proto.CryptoTransfer;
 import com.newjerseysoftware.hederaDemo.model.User;
 import com.newjerseysoftware.hederaDemo.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,10 @@ public class TransactionService {
         //check order
         //configure private key in account create transaction
         //client.setOperator(user.getAccountid(), user.getPrivateKey());
-        TransactionResponse transactionResponse = new CryptoTransferTransaction()
+        TransactionResponse transactionResponse = new TransferTransaction()
                  //return actual Id?
-                .addTransfer(AccountId.fromString(user.getAccountid()), Hbar.fromTinybars(-(fee)))
-                .addTransfer(AccountId.fromString(vendor.getAccountid()), Hbar.fromTinybars(fee))
+                .addHbarTransfer(AccountId.fromString(user.getAccountid()), Hbar.fromTinybars(-(fee)))
+                .addHbarTransfer(AccountId.fromString(vendor.getAccountid()), Hbar.fromTinybars(fee))
                 //add input as memo
                 //.setTransactionMemo("transfer test")
                 //in my local project this line gave a no such method found error

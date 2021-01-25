@@ -1,18 +1,17 @@
 package com.newjerseysoftware.hederaDemo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.hedera.hashgraph.sdk.PrivateKey;
-import com.hedera.hashgraph.sdk.PublicKey;
-//import com.mysql.cj.xdevapi.Table;
-import org.hibernate.validator.constraints.NotBlank;
+import com.hedera.hashgraph.sdk.*;
 
 import javax.persistence.*;
+import java.util.Objects;
+import java.util.concurrent.TimeoutException;
 
 @Entity
 @Table(name = "vendors")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Vendor {
-
+    Client client=Client.forTestnet();
     public Vendor() {
     }
 
@@ -41,9 +40,8 @@ public class Vendor {
     @Column(name = "publickey")
     private String publickey;
 
-    @Column(name="privatekey")
+    @Column(name = "privatekey")
     private String privatekey;
-
 
 
     public String getAccountid() {
@@ -53,14 +51,8 @@ public class Vendor {
     public void setAccountid(String accountid) {
         this.accountid = accountid;
     }
-
-    public String getPublickey() {
-        return publickey;
-    }
-
-    public void setPublickey(String publickey) {
-        this.publickey = publickey;
-    }
+    public void setAccountid() throws HederaReceiptStatusException, TimeoutException, HederaPreCheckStatusException {
+        this.accountid=AccountCreateTransaction(this.publickey).toString();}
 
     public String getFirstname() {
         return firstname;
@@ -77,6 +69,17 @@ public class Vendor {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+    public String getPublickey() {
+        return publickey;
+    }
+
+    public void setPublicKey(){
+        this.publickey= com.hedera.hashgraph.sdk.PrivateKey.fromString(this.privatekey).getPublicKey().toString();
+    }
+    public void setPrivateKey(){
+        this.privatekey= PrivateKey.generate().toString();
+    }
+    public String getPrivateKey(){ return this.privatekey;}
 
     public String getEmail() {
         return email;
@@ -89,6 +92,7 @@ public class Vendor {
     public long getId() {
         return id;
     }
+
 
     public String getUsername() {
         return username;
@@ -118,19 +122,17 @@ public class Vendor {
                 ", password='" + password + '\'' +
                 '}';
     }
-    public void setPrivatekey(){
-        PrivateKey newPrivKey = PrivateKey.generate();
-        this.privatekey=newPrivKey.toString();
-    }
-    private String getPrivatekey(){
-        return this.privatekey;
-    }
-    public void setPublicKey(){
-        PublicKey newPublicKey=PrivateKey.fromString(this.privatekey).getPublicKey();
-        this.publickey=newPublicKey.toString();
-    }
-    public String getPublicKey(){
-        return this.publickey;
+    public AccountId AccountCreateTransaction(String publickey) throws TimeoutException, HederaPreCheckStatusException, HederaReceiptStatusException {
+
+        //add environment variables
+        AccountId envId=AccountId.fromString(Objects.requireNonNull((System.getenv("nahara_account_id"))));
+        PrivateKey envPriv=PrivateKey.fromString(Objects.requireNonNull((System.getenv("nahara_private_key"))));
+        client.setOperator(envId, envPriv);
+        AccountCreateTransaction transaction = new AccountCreateTransaction()
+                .setKey(PublicKey.fromString(publickey))
+                .setInitialBalance( new Hbar(70));
+        TransactionResponse txId= transaction.execute(client);
+        TransactionReceipt receipt= txId.getReceipt(client);
+        return receipt.accountId;
     }
 }
-

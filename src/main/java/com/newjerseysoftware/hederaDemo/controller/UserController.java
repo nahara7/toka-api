@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
 
-@RestController
-@RequestMapping("/api/v1.0")
-@CrossOrigin(origins = "")
+//@RestController
+//@RequestMapping("/api/v1.0")
+//@CrossOrigin(origins = "")
 public class UserController {
 
     public UserController() {}

@@ -1,4 +1,4 @@
-package com.newjerseysoftware.hederaDemo.service.hedera.api;
+package com.newjerseysoftware.hederaDemo.api;
 
 import com.hedera.hashgraph.sdk.*;
 import com.newjerseysoftware.hederaDemo.model.Token;
@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import com.newjerseysoftware.hederaDemo.api.Hedera;
+//import com.newjerseysoftware.hederaDemo.api.Hedera;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeoutException;
@@ -20,7 +20,7 @@ public class TransactionAsyncService {
     private Hedera hedera;
 
     public TransactionAsyncService(Hedera hedera) {
-        this.hedera = hedera;
+        hedera = hedera;
     }
 
     private static Logger log = LoggerFactory.getLogger(TransactionAsyncService.class);

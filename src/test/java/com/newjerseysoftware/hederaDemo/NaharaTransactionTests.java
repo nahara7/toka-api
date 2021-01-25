@@ -6,7 +6,7 @@ import com.hedera.hashgraph.sdk.HederaReceiptStatusException;
 import com.hedera.hashgraph.sdk.TransactionReceipt;
 import com.newjerseysoftware.hederaDemo.model.Transaction;
 import com.newjerseysoftware.hederaDemo.model.User;
-import com.newjerseysoftware.hederaDemo.model.UserWallet;
+
 import com.newjerseysoftware.hederaDemo.model.Vendor;
 import org.junit.Test;
 
@@ -27,6 +27,7 @@ public class NaharaTransactionTests {
         vendor.setPublicKey();
         vendor.setAccountid();
 
+
         Transaction transaction= new Transaction(user, vendor, 10);
         //transaction.transactionUserVendor();
         transaction.vendorPromotion(10, "get 10 JVT!");
@@ -34,9 +35,12 @@ public class NaharaTransactionTests {
         TransactionReceipt receipt =transaction.returnReceipt();
         System.out.println(receipt.toString());
 
-        UserWallet userWallet=new UserWallet(user);
-        System.out.println(userWallet.getAccountBalance());
-        System.out.println(userWallet.getAccountInfo());
+       // UserWallet userWallet=new UserWallet(user);
+        //System.out.println(userWallet.getAccountBalance());
+        //System.out.println(userWallet.getAccountInfo());
+    }
+    public void checkUserCreate(){
+
     }
 
 }

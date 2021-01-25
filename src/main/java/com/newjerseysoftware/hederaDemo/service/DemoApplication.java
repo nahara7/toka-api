@@ -9,10 +9,10 @@ import static org.springframework.boot.SpringApplication.*;
 @SpringBootApplication
 public class DemoApplication {
 
-	@Bean
+	/*@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
+	}*/
 
 	public static void main(String[] args) {
 		run(DemoApplication.class, args);
