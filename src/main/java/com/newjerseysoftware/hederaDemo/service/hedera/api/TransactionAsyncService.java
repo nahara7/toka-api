@@ -1,16 +1,15 @@
 package com.newjerseysoftware.hederaDemo.service.hedera.api;
 
-import com.hedera.hashgraph.sdk.*;
+import com.hedera.hashgraph.sdk.TokenId;
+import com.newjerseysoftware.hederaDemo.components.Hedera;
 import com.newjerseysoftware.hederaDemo.model.Token;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import com.newjerseysoftware.hederaDemo.api.Hedera;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeoutException;
 
 @Service
 public class TransactionAsyncService {

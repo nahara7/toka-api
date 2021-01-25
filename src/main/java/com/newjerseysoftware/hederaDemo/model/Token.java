@@ -1,6 +1,7 @@
 package com.newjerseysoftware.hederaDemo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity

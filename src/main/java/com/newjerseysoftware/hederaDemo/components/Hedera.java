@@ -1,4 +1,4 @@
-package com.newjerseysoftware.hederaDemo.api;
+package com.newjerseysoftware.hederaDemo.components;
 
 import com.hedera.hashgraph.sdk.*;
 import org.slf4j.Logger;

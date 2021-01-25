@@ -1,22 +1,15 @@
 package com.newjerseysoftware.hederaDemo.controller;
 
-import com.hedera.hashgraph.sdk.HederaPreCheckStatusException;
-import com.hedera.hashgraph.sdk.HederaReceiptStatusException;
 import com.newjerseysoftware.hederaDemo.model.Token;
-import com.newjerseysoftware.hederaDemo.model.User;
-import com.newjerseysoftware.hederaDemo.model.Vendor;
 import com.newjerseysoftware.hederaDemo.repository.TokenRepository;
 import com.newjerseysoftware.hederaDemo.service.hedera.api.TransactionAsyncService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
 
 @RestController
 @RequestMapping("api/v1.0/transaction")
