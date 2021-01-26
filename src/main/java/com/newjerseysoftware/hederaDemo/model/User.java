@@ -45,6 +45,8 @@ public class User {
 
     @Column(name="privatekey")
     private String privatekey;
+    @Column(name="wallet")
+    private Wallet wallet;
 
 
 
@@ -59,7 +61,12 @@ public class User {
     public void setAccountid() throws HederaReceiptStatusException, TimeoutException, HederaPreCheckStatusException {
         this.accountid=AccountCreateTransaction(this.publickey).toString();
     }
-
+   public void setWallet(Wallet wallet){
+        this.wallet=wallet;
+    }
+    public Wallet getWallet(){
+        return this.wallet;
+    }
 
     public String getPublickey() {
         return publickey;
